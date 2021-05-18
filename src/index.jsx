@@ -121,7 +121,8 @@ class App extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         //debugger;
         
-        if(prevState.searchInput !== this.state.searchInput || prevState.selectedTags.length !== this.state.selectedTags.length) {
+        if(prevState.searchInput !== this.state.searchInput || prevState.selectedTags.length !== this.state.selectedTags.length || 
+            prevState.favorites !== this.state.favorites) {
             this.getTitlesBySearch();
             console.log(`Старый поиск: ${prevState.searchInput}`);
             console.log(`Новый поиск: ${this.state.searchInput}`);
