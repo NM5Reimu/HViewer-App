@@ -15,6 +15,7 @@ class App extends React.Component {
         this.state = {
             titles: [],
             selectedTags: [],
+            favorites: false,
             searchInput: '',
             review: '',
 
@@ -29,6 +30,8 @@ class App extends React.Component {
 
         this.handleSearchChange = this.handleSearchChange.bind(this);
         this.handleReviewRequest = this.handleReviewRequest.bind(this);
+        this.handleFavoritesButtonChange = this.handleFavoritesButtonChange.bind(this);
+
 
         this.handleDimmerChange = this.handleDimmerChange.bind(this);
         this.handleVideoDimmerChange = this.handleVideoDimmerChange.bind(this);
@@ -36,9 +39,10 @@ class App extends React.Component {
         this.handleTagSearchChange = this.handleTagSearchChange.bind(this);
 
         this.handleHome = this.handleHome.bind(this);
-    } 
+    }
+
     getTitlesBySearch(){
-        axios.get(`http://localhost:3000/getSearched/${JSON.stringify({searchField: this.state.searchInput, tags: this.state.selectedTags})}`)
+        axios.get(`http://localhost:3000/getSearched/${JSON.stringify({searchField: this.state.searchInput, tags: this.state.selectedTags, favs: this.state.favorites})}`)
             .then((response) => {
                 this.setState({
                     titles: response.data
@@ -62,6 +66,19 @@ class App extends React.Component {
         })
     }
 
+    handleFavoritesButtonChange(value){
+        console.log(value);
+        if(value === 'true'){
+            this.setState({
+                favorites: true
+            })
+        } else{
+            this.setState({
+                favorites: false
+            })
+        }
+    }
+
     handleTagSearchChange(tag){
         let array = this.state.selectedTags.slice();
         if(this.state.selectedTags.includes(tag)){
@@ -72,8 +89,7 @@ class App extends React.Component {
                     selectedTags: array
                 })
             }
-        }
-        else{
+        } else{
             this.setState({
                 selectedTags: [...this.state.selectedTags, tag]
             })
@@ -111,7 +127,7 @@ class App extends React.Component {
             console.log(`Новый поиск: ${this.state.searchInput}`);
             console.log(`-----------------------------------`);
             console.log(`Старая длина: ${prevState.selectedTags.length}`);
-            console.log(`Новая длина: ${this.state.selectedTags.length}`)
+            console.log(`Новая длина: ${this.state.selectedTags.length}`);
           
         }
       }
@@ -125,9 +141,11 @@ class App extends React.Component {
         return (
             <div>
                 <SideMenu 
-                    onSearchChange={this.handleSearchChange}
                     searchInput={this.state.searchInput}  
                     selectedTags={this.state.selectedTags}   
+                    favorites={this.state.favorites}
+                    onFavoriteChange={this.handleFavoritesButtonChange}
+                    onSearchChange={this.handleSearchChange}
                     onTagSearchChange={this.handleTagSearchChange}
                     onHome={this.handleHome}     
                 />

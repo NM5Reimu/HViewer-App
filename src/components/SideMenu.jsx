@@ -11,6 +11,11 @@ export class SideMenu extends React.Component{
 
         this.handleSearchChange = this.handleSearchChange.bind(this);
         this.handleTagSearchChange = this.handleTagSearchChange.bind(this);
+        this.handleFavoritesButtonChange = this.handleFavoritesButtonChange.bind(this);
+    }
+
+    handleFavoritesButtonChange(e){
+        this.props.onFavoriteChange(e.target.value)
     }
 
     handleTagSearchChange(e){
@@ -40,7 +45,11 @@ export class SideMenu extends React.Component{
                          />
                     </Menu.Item>
 
-                    <Button basic='false' color='pink' content='Favorites' icon='heart' size='tiny'/>
+                    {
+                        this.props.favorites == false ?
+                        <Button basic color='pink' content='Favorites' icon='heart' size='tiny' value={true} onClick={this.handleFavoritesButtonChange}/>
+                        : <Button color='pink' content='Favorites' icon='heart' size='tiny' value={false} onClick={this.handleFavoritesButtonChange}/>
+                    }
 
                     <Menu.Item>
                         <h4>Tags</h4>    
