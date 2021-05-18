@@ -1,0 +1,80 @@
+body {
+    background: white;   
+
+    span {
+        font-size: 50px;
+    }    
+}
+img{
+    margin: auto;
+}
+.SMenu{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 250px;
+    background: rgb(27, 28, 29);
+    overflow-x: hidden;
+    flex: 1 1 0%;   
+    text-align: center;
+}
+.SContent{
+    margin-left: 250px;
+    min-width: 550px;
+}
+.SReview{
+    margin-left: 250px;
+    min-width: 550px;
+}
+.SContent img{
+    height: 320px;
+    box-shadow: 0px 1px 5px 1px rgba(0,0,0,0.4);
+    transition: 0.3s ;
+}
+.SContent img:hover{
+    box-shadow: 0px 2px 5px 2px rgba(0,0,0,0.5);
+    cursor: pointer;
+    transform: scale(1.02);
+}
+.ui.dividing.header{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.titleInfo{
+    white-space: pre-line
+}
+.descrip{
+    text-align: justify 
+}
+.screenZone{
+    white-space: nowrap;
+    overflow-x: auto; 
+    overflow-y: hidden;
+    max-height: 235px;        
+}
+.SReview img{
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);    
+}
+.reviewScreenshots:hover{
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    cursor: pointer;
+}
+.coverImage{
+    max-height: 515px;
+}
+.mainLogo{
+    transition: 0.3s;    
+}
+.mainLogo:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.dimmerPlayero video, *:focus {
+    outline: 0!important;
+    outline: none!important;
+    outline-width: 0;
+   -webkit-tap-highlight-color: rgba(0,0,0,0)!important;
+}

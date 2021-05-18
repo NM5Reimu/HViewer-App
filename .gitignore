@@ -1,0 +1,5 @@
+node_modules
+src/components/db
+src/public
+!src/public/Logo1.png
+src/public/redux
