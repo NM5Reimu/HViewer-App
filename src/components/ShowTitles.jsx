@@ -1,86 +1,58 @@
-import * as React from 'react'; 
-import 'semantic-ui-css/semantic.min.css'
-import { Image, Header, Grid, Icon, Rating, Button } from 'semantic-ui-react'
-import { Link } from "react-router-dom";
-import axios from 'axios';
+import * as React from 'react';
+import 'semantic-ui-css/semantic.min.css';
+import { Image, Header, Icon, Rating } from 'semantic-ui-react';
+import { bindActionCreators } from 'redux';
+import { changeTitleReview } from '../store/actions/showTitlesActions';
+import { connect } from 'react-redux';
+import { getSearchedTitles } from '../store/actions/appActions.js';
 
-export class ShowTitles extends React.Component{
-    constructor(props){
-        super(props)
+function ShowTitles(props) {
+  const { titles, changeTitleReview } = props;
 
-        this.handleReviewChange = this.handleReviewChange.bind(this);
-    }
-    
-    handleReviewChange(e) {
-        this.props.onReviewRequest(e.target.id)
-    }
+  const titlesList = titles.map((item, index) => (
+    <div key={index} className="titlePreviewCover">
+      <Image src={item.cover_path} onClick={() => changeTitleReview(item)} id={item.id} />
+      <div className="nameAndRating">
+        <h4>{item.name}</h4>
+        <div>
+          <Rating maxRating={5} size="tiny" clearable disabled defaultRating={item.rating} />
+        </div>
+      </div>
+    </div>
+  ));
 
-    render(){
-        
-        const searchInput = this.props.searchInput;
-        const selectedTags = this.props.selectedTags;
+  return (
+    <div className="SContent">
+      {/* <Header as="h2" dividing className="headerWrapper">
+        <div>
+          <Icon name="user secret" />
+          <Header.Content>
+            Sono Chi no Sadame!
+            <Header.Subheader>正 正 正 正 正 正 正</Header.Subheader>
+          </Header.Content>
+        </div>
+        <div className="slider">
+          <div>Size</div>
+          <input type="range" min="1" max="6" />
+        </div>
+      </Header> */}
 
-        // function searchAllTags(searchTags, titleTags){            
-        //     let ans = true;
-        //     if(searchTags){
-        //         searchTags.map((item) => (
-        //             ans = ans * titleTags.includes(item)
-        //         ))
-        //         return ans
-        //     }        
-        //     else{
-        //         return ans
-        //     }               
-        // }
-       
-        // //поиск по имени в db
-        // const resultArray = searchInput || selectedTags ?
-        //     this.props.allTitles.filter(
-        //         (item) => item.name.toLowerCase().indexOf(searchInput.toLowerCase()) !== -1 && searchAllTags(selectedTags, item.tags)
-        //     ) : this.props.allTitles; 
-
-        const resultArray = this.props.allTitles;
-
-        //вывод отсортированного списка  
-        const rows = [...Array(Math.ceil(resultArray.length / 5))];
-        const itemRows = rows.map( (row, idx) => resultArray.slice(idx * 5, idx * 5 + 5) );
-        const titleRows = itemRows.map((row, idx) => (
-            <Grid.Row key={idx}>                    
-                {row.map((item, index) => (
-                    <Grid.Column textAlign="center" key={index}> 
-                        <Link to={`/title`}>
-                            <Image src={item.cover_path} onClick={this.handleReviewChange} id={item.id}/>                                
-                        </Link>       
-
-
-                        <h4 style={{marginTop: 15, marginBottom: 5}}>{item.name}</h4>
-                        <Rating maxRating={5} size='tiny' clearable defaultRating={item.rating}/>                                               
-                    </Grid.Column>
-                ))}                                        
-            </Grid.Row>
-        ));    
-
-        return(
-            <div className="SContent">
-                <Header as='h2' dividing>
-                    <Icon name='user secret' />
-                    <Header.Content>
-                        Choose your... Waifu!
-                        <Header.Subheader>正 正 正 正 正 正 正</Header.Subheader>
-                    </Header.Content>
-                    
-                    <input
-                        type='range'
-                        min='1'
-                        max='6'
-                    />
-                    
-                </Header>
-
-                <Grid columns={5} relaxed padded divided>
-                    {titleRows}                                          
-                </Grid>
-            </div>            
-        )
-    }
+      <div className="titleView">{titlesList}</div>
+    </div>
+  );
 }
+
+const putStateToProps = (state) => {
+  return {
+    titles: state.titles,
+  };
+};
+
+const putActionsToProps = (dispatch) => {
+  return {
+    changeTitleReview: bindActionCreators(changeTitleReview, dispatch),
+    getSearchedTitles: bindActionCreators(getSearchedTitles, dispatch),
+  };
+};
+
+export default connect(putStateToProps, putActionsToProps)(ShowTitles);

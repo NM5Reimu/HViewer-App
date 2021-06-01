@@ -7,10 +7,6 @@ const htmlPlugin = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-    /**
-     * Секции entry и output в данном случае можно было бы опустить,
-     * т.к. по умолчанию заданы именно такие настройки.
-     */
     entry: './src/index.jsx',
     output: {
         filename: 'main.js',
@@ -37,8 +33,8 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                        name: '[name].[ext]',
-                        outputPath: 'fonts/'
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/'
                         }
                     }
                 ]
@@ -48,5 +44,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.css', '.less']
     },
-    plugins: [htmlPlugin]
+    plugins: [
+        htmlPlugin
+    ]
 };
