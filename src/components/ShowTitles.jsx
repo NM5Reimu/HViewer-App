@@ -1,5 +1,4 @@
 import * as React from 'react';
-import 'semantic-ui-css/semantic.min.css';
 import { Image, Header, Icon, Rating } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { changeTitleReview } from '../store/actions/showTitlesActions';

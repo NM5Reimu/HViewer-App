@@ -19,10 +19,10 @@ class MainPage extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
-      prevProps.searchInput !== this.props.searchInput
-      || prevProps.selectedTags.length !== this.props.selectedTags.length
-      || prevProps.favorites !== this.props.favorites
-      || prevProps.review !== ''
+      prevProps.searchInput !== this.props.searchInput ||
+      prevProps.selectedTags.length !== this.props.selectedTags.length ||
+      prevProps.favorites !== this.props.favorites ||
+      prevProps.review !== ''
     ) {
       this.props.getSearchedTitles();
       console.log('componentDidUpdate()');

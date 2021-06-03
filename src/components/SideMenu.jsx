@@ -1,5 +1,4 @@
 import * as React from 'react';
-import 'semantic-ui-css/semantic.min.css';
 import { Button, Image, Menu, Input } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import {

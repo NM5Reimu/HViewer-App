@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import { Button, Image, Header, Segment, Grid, Rating, Dimmer, Embed } from 'semantic-ui-react';
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setTitleRating, setTitleFavorite } from '../store/actions/showReviewActions'
-import 'semantic-ui-css/semantic.min.css';
+import { connect } from 'react-redux';
+import { setTitleRating, setTitleFavorite } from '../store/actions/showReviewActions';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper/core';
+import 'swiper/swiper.min.css';
+import 'swiper/components/pagination/pagination.min.css';
+import 'swiper/components/navigation/navigation.min.css';
+
+SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 function ShowReview(props) {
   const { review, setTitleRating, setTitleFavorite } = props;
 
   const [state, setState] = useState({
     sDimmerContent: '',
-    vDimmerContent: ''
-  })  
+    vDimmerContent: '',
+  });
 
   if (review) {
     //Разделение на строки по 4 видео
@@ -26,7 +32,7 @@ function ShowReview(props) {
               placeholder={item.placeholder}
               url={item.video_path}
               active={false}
-              onClick={() => setState({...state, vDimmerContent: item.video_path})}
+              onClick={() => setState({ ...state, vDimmerContent: item.video_path })}
               style={{ boxShadow: '0px 0px 4px 0px rgba(0,0,0,0.5)' }}
             />
             <h4>Part {item.part}</h4>
@@ -37,10 +43,6 @@ function ShowReview(props) {
 
     return (
       <div className="SReview" key={review.id}>
-        {/* <Header as="h1" dividing>
-          <Header.Content>{review.name}</Header.Content>
-        </Header> */}
-
         <Grid columns={2} padded>
           <Grid.Row>
             <Grid.Column width={3}>
@@ -56,26 +58,26 @@ function ShowReview(props) {
                   floated="left"
                   style={{ paddingTop: 3 }}
                 />
-                {review.favorites ? (
-                  <Button
-                    color="pink"
-                    content="Favorite"
-                    icon="heart"
-                    floated="right"
-                    size="tiny"
-                    onClick={() => setTitleFavorite(review.id, false)}
-                  />
-                ) : (
-                  <Button
-                    basic
-                    color="pink"
-                    content="Favorite"
-                    icon="heart"
-                    floated="right"
-                    size="tiny"
-                    onClick={() => setTitleFavorite(review.id, true)}
-                  />
-                )}
+                {
+                  review.favorites 
+                    ? <Button
+                      color="pink"
+                      content="Favorite"
+                      icon="heart"
+                      floated="right"
+                      size="tiny"
+                      onClick={() => setTitleFavorite(review.id, false)}
+                      /> 
+                    : <Button
+                      basic
+                      color="pink"
+                      content="Favorite"
+                      icon="heart"
+                      floated="right"
+                      size="tiny"
+                      onClick={() => setTitleFavorite(review.id, true)}
+                      />
+                }
               </Segment>
             </Grid.Column>
 
@@ -136,18 +138,28 @@ function ShowReview(props) {
                 </Grid.Row>
               </Grid>
 
-              <Segment className="screenZone">
+              <Segment className="screenZoneZ">
                 <h4>Screenshots</h4>
-                <Image.Group size="medium">
+                <Swiper
+                  spaceBetween={10}
+                  slidesPerView={4}
+                  autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                  }}
+                  loop={true}
+                >
                   {review.screenshots_paths.map((item, index) => (
-                    <Image
-                      src={item}
-                      onClick={() => setState({...state, sDimmerContent: item})}
-                      key={index}
-                      className="reviewScreenshots"
-                    />
+                    <SwiperSlide>
+                      <Image
+                        src={item}
+                        onClick={() => setState({ ...state, sDimmerContent: item })}
+                        key={index}
+                        className="reviewScreenshots"
+                      />
+                    </SwiperSlide>
                   ))}
-                </Image.Group>
+                </Swiper>
               </Segment>
             </Grid.Column>
           </Grid.Row>
@@ -164,11 +176,19 @@ function ShowReview(props) {
           </Grid.Row>
         </Grid>
 
-        <Dimmer active={state.sDimmerContent !== ''} onClickOutside={() => setState({...state, sDimmerContent: ''})} page>
+        <Dimmer
+          active={state.sDimmerContent !== ''}
+          onClickOutside={() => setState({ ...state, sDimmerContent: '' })}
+          page
+        >
           <Image src={state.sDimmerContent} />
         </Dimmer>
 
-        <Dimmer active={state.vDimmerContent !== ''} onClickOutside={() => setState({...state, vDimmerContent: ''})} page>
+        <Dimmer
+          active={state.vDimmerContent !== ''}
+          onClickOutside={() => setState({ ...state, vDimmerContent: '' })}
+          page
+        >
           <video
             autoPlay="autoplay"
             width="1280"
@@ -181,7 +201,7 @@ function ShowReview(props) {
         </Dimmer>
       </div>
     );
-  } 
+  }
   // else {
   //   return (
   //     <div className="SReview sr-loading">
@@ -201,8 +221,8 @@ const putStateToProps = (state) => {
 
 const putActionsToProps = (dispatch) => {
   return {
-	setTitleRating: bindActionCreators(setTitleRating, dispatch),
-  setTitleFavorite: bindActionCreators(setTitleFavorite, dispatch)
+    setTitleRating: bindActionCreators(setTitleRating, dispatch),
+    setTitleFavorite: bindActionCreators(setTitleFavorite, dispatch),
   };
 };
 
