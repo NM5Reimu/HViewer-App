@@ -1,14 +1,12 @@
-import { 
-  CHANGE_TITLE_REVIEW
- } from '../../actionsTypes/showTitlesActionsTypes';
- import { 
+import { CHANGE_TITLE_REVIEW } from '../../actionsTypes/showTitlesActionsTypes';
+import {
   SET_RATING_STARTED,
   SET_RATING_SUCCESS,
   SET_RATING_FAILURE,
   TOGGLE_FAVORITE_STARTED,
   TOGGLE_FAVORITE_SUCCESS,
   TOGGLE_FAVORITE_FAILURE,
- } from '../../actionsTypes/showReviewActionsTypes';
+} from '../../actionsTypes/showReviewActionsTypes';
 
 const initState = '';
 

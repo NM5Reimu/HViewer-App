@@ -7,7 +7,7 @@
     "dev": "webpack --mode production",
     "build": "webpack --mode production",
     "start": "webpack serve --mode development --open --hot",
-    "prettier": "prettier --write src/**/*.jsx"
+    "prettier": "prettier --write \"src/**/*.{ts,js,jsx,css,scss,less}\""
   },
   "keywords": [],
   "author": "",

@@ -58,26 +58,26 @@ function ShowReview(props) {
                   floated="left"
                   style={{ paddingTop: 3 }}
                 />
-                {
-                  review.favorites 
-                    ? <Button
-                      color="pink"
-                      content="Favorite"
-                      icon="heart"
-                      floated="right"
-                      size="tiny"
-                      onClick={() => setTitleFavorite(review.id, false)}
-                      /> 
-                    : <Button
-                      basic
-                      color="pink"
-                      content="Favorite"
-                      icon="heart"
-                      floated="right"
-                      size="tiny"
-                      onClick={() => setTitleFavorite(review.id, true)}
-                      />
-                }
+                {review.favorites ? (
+                  <Button
+                    color="pink"
+                    content="Favorite"
+                    icon="heart"
+                    floated="right"
+                    size="tiny"
+                    onClick={() => setTitleFavorite(review.id, false)}
+                  />
+                ) : (
+                  <Button
+                    basic
+                    color="pink"
+                    content="Favorite"
+                    icon="heart"
+                    floated="right"
+                    size="tiny"
+                    onClick={() => setTitleFavorite(review.id, true)}
+                  />
+                )}
               </Segment>
             </Grid.Column>
 

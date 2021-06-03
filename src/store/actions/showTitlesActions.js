@@ -1,6 +1,4 @@
-import { 
-  CHANGE_TITLE_REVIEW
- } from '../actionsTypes/showTitlesActionsTypes';
+import { CHANGE_TITLE_REVIEW } from '../actionsTypes/showTitlesActionsTypes';
 
 export function changeTitleReview(title) {
   return {
@@ -8,5 +6,3 @@ export function changeTitleReview(title) {
     payload: title,
   };
 }
-
-
