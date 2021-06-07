@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { Button, Image, Menu, Input } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { changeTitleReview } from '../store/actions/showTitlesActions';
+import { bindActionCreators } from 'redux';
 import {
   toggleFavoriteButton,
   changeSelectedTags,
   changeSearchField,
 } from '../store/actions/sideMenuActions';
-import { changeTitleReview } from '../store/actions/showTitlesActions';
-import { bindActionCreators } from 'redux';
+
 
 const TAGS = require('./db/animeTagsList.json');
 
