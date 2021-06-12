@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-
 import searchInput from './test/searchInput';
 import selectedTags from './test/selectedTags';
 import favorites from './test/favorites';
 import titles from './test/titles';
 import review from './test/review';
+import darkTheme from './test/darkTheme';
 
 export const rootReducer = combineReducers({
   searchInput,
@@ -12,4 +12,5 @@ export const rootReducer = combineReducers({
   favorites,
   titles,
   review,
+  darkTheme
 });
