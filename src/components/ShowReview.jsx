@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Image, Header, Segment, Grid, Rating, Dimmer, Embed } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import { setTitleRating, setTitleFavorite } from '../store/actions/showReviewActions';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper/core';
@@ -12,7 +13,7 @@ import 'swiper/components/navigation/navigation.min.css';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 function ShowReview(props) {
-  const { review, setTitleRating, setTitleFavorite } = props;
+  const { review, darkTheme, setTitleRating, setTitleFavorite } = props;
 
   const [state, setState] = useState({
     sDimmerContent: '',
@@ -41,13 +42,22 @@ function ShowReview(props) {
   ));
 
   return (
-    <div className="SReview" key={review.id}>
+    <div key={review.id} className={'c-show-review'}>
+      <Helmet>
+        <style>{`
+          .ui.rating .active.icon { color: ${darkTheme ? '#bd247ae0' : 'rgba(0,0,0,0.85)' }}
+          .ui.rating .icon { color: ${darkTheme ? '#fcfcfc2b' : 'rgba(0,0,0,0.15)' }}
+          .ui.rating .icon.selected.active { color: ${darkTheme ? '#e61a8d' : 'rgba(0,0,0,0.87)' }}
+          .ui.rating .icon.selected { color: ${darkTheme ? '#e61a8d' : 'rgba(0,0,0,0.87)' }}
+        `}</style>
+      </Helmet>
+      
       <Grid columns={2} padded>
         <Grid.Row>
           <Grid.Column width={3}>
-            <Image src={review.cover_path} className="coverImage" />
+            <Image src={review.cover_path} className="img-cover" />
 
-            <Segment style={{ verticalAlign: 'middle' }}>
+            <Segment inverted={darkTheme} style={{ verticalAlign: 'middle' }}>
               <Rating
                 maxRating={5}
                 onRate={(e, { rating }) => setTitleRating(review.id, rating)}
@@ -80,11 +90,11 @@ function ShowReview(props) {
             </Segment>
           </Grid.Column>
 
-          <Grid.Column width={13} className="titleInfo">
+          <Grid.Column width={13} className="title-info">
             <Grid columns="2" stretched>
               <Grid.Row>
                 <Grid.Column width={12}>
-                  <Segment>
+                  <Segment inverted={darkTheme}>
                     <Grid>
                       <Grid.Row>
                         <Grid.Column>
@@ -116,7 +126,7 @@ function ShowReview(props) {
                 </Grid.Column>
 
                 <Grid.Column width={4}>
-                  <Segment>
+                  <Segment inverted={darkTheme}>
                     <h4>Tags</h4>
                     <Button basic color="purple" size="tiny" style={{ marginBottom: 3 }}>
                       {review.titleInfo.studios}
@@ -137,8 +147,8 @@ function ShowReview(props) {
               </Grid.Row>
             </Grid>
 
-            <Segment className="screenZoneZ">
-              <h4>Screenshots</h4>
+            <Segment inverted={darkTheme}>
+              <h4>Frames</h4>
               <Swiper
                 spaceBetween={10}
                 slidesPerView={4}
@@ -154,7 +164,7 @@ function ShowReview(props) {
                       src={item}
                       onClick={() => setState({ ...state, sDimmerContent: item })}
                       key={index}
-                      className="reviewScreenshots"
+                      className="img-frame"
                     />
                   </SwiperSlide>
                 ))}
@@ -165,7 +175,7 @@ function ShowReview(props) {
 
         <Grid.Row>
           <Grid.Column width={16}>
-            <Segment className="videoSegment" raised>
+            <Segment raised inverted={darkTheme}>
               <h4>Watch</h4>
               <Grid columns="4" relaxed padded divided>
                 {videoRows}
@@ -193,7 +203,7 @@ function ShowReview(props) {
           width="1280"
           height="720"
           controls="controls"
-          className="dimmerPlayer"
+          className="dimmer-player"
         >
           <source src={state.vDimmerContent} type="video/mp4" />
         </video>
@@ -205,6 +215,7 @@ function ShowReview(props) {
 const putStateToProps = (state) => {
   return {
     review: state.review,
+    darkTheme: state.darkTheme
   };
 };
 

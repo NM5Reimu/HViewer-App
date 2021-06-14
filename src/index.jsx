@@ -5,6 +5,9 @@ import MainPage from './components/MainPage.jsx';
 import store from './store/store';
 import 'semantic-ui-css/semantic.min.css';
 import './styles';
+import './styles/SideMenuStyle';
+import './styles/ShowTitlesStyles';
+import './styles/ShowReviewStyle';
 
 ReactDOM.render(
   <Provider store={store}>

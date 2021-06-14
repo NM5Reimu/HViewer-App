@@ -4,6 +4,7 @@ import ShowTitles from './ShowTitles.jsx';
 import ShowReview from './ShowReview.jsx';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import { getSearchedTitles } from '../store/actions/appActions.js';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -32,6 +33,9 @@ class MainPage extends Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <style>{`body { background-color: ${this.props.darkTheme ? '#151515' : 'white'}; }`}</style>
+        </Helmet>
         <SideMenu />
         {this.props.review ? <ShowReview /> : <ShowTitles />}
       </div>
@@ -46,6 +50,7 @@ const putStateToProps = (state) => {
     searchInput: state.searchInput,
     selectedTags: state.selectedTags,
     favorites: state.favorites,
+    darkTheme: state.darkTheme 
   };
 };
 

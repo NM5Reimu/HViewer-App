@@ -24,12 +24,12 @@ function SideMenu(props) {
   } = props;
 
   return (
-    <div className="SMenu">
+    <div className="c-side-menu">
       <Menu vertical inverted compact borderless fluid>
         <Menu.Item>
           <Image
             src="/src/public/Logo1.png"
-            className="mainLogo"
+            className="img-logo"
             size="small"
             onClick={() => changeTitleReview(null)}
           />
