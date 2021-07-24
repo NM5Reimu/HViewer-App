@@ -27,10 +27,16 @@
 **Скриншоты**:
 
 
-![Главная](https://i.imgur.com/8LKOM94.png)
+![Главная](https://i.imgur.com/Cok86GS.png)
 
 
-![Обзор тайтла](https://i.imgur.com/nrOnPQG.png)
+![Главная](https://i.imgur.com/xefbKIw.png)
+
+
+![Обзор тайтла](https://i.imgur.com/sYj58jX.png)
+
+
+![Обзор тайтла](https://i.imgur.com/VzCzJ9D.png)
 
 
 ![Просмотр](https://i.imgur.com/dbn8wkm.png)
