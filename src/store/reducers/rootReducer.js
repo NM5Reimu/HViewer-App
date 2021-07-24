@@ -5,6 +5,7 @@ import favorites from './test/favorites';
 import titles from './test/titles';
 import review from './test/review';
 import darkTheme from './test/darkTheme';
+import sortBy from './test/sortBy';
 
 export const rootReducer = combineReducers({
   searchInput,
@@ -12,5 +13,6 @@ export const rootReducer = combineReducers({
   favorites,
   titles,
   review,
-  darkTheme
+  darkTheme,
+  sortBy,
 });

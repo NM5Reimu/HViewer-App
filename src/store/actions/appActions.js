@@ -12,13 +12,14 @@ export function getSearchedTitles() {
     const state = store.getState();
 
     axios
-      .get(
-        `http://localhost:3000/getSearched/${JSON.stringify({
-          searchField: state.searchInput,
+      .get('http://localhost:3000/getSearched/', {
+        params: {
+          search: state.searchInput,
           tags: state.selectedTags,
-          favs: state.favorites,
-        })}`,
-      )
+          favorites: state.favorites,
+          sortBy: state.sortBy,
+        },
+      })
       .then((response) => {
         dispatch(getTitlesSuccess(response.data));
         console.log(response.data);
@@ -35,6 +36,7 @@ export function getSearchedTitles() {
 
 const getTitlesStarted = () => ({
   type: GET_SEARCHED_TITLES_STARTED,
+  payload: []
 });
 
 const getTitlesSuccess = (titles) => ({

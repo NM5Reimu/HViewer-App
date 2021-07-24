@@ -42,16 +42,16 @@ function ShowReview(props) {
   ));
 
   return (
-    <div key={review.id} className={'c-show-review'}>
+    <div key={review.id} className={'c-show-review animate__animated animate__fadeIn'}>
       <Helmet>
         <style>{`
-          .ui.rating .active.icon { color: ${darkTheme ? '#bd247ae0' : 'rgba(0,0,0,0.85)' }}
-          .ui.rating .icon { color: ${darkTheme ? '#fcfcfc2b' : 'rgba(0,0,0,0.15)' }}
-          .ui.rating .icon.selected.active { color: ${darkTheme ? '#e61a8d' : 'rgba(0,0,0,0.87)' }}
-          .ui.rating .icon.selected { color: ${darkTheme ? '#e61a8d' : 'rgba(0,0,0,0.87)' }}
+          .ui.rating .active.icon { color: ${darkTheme ? '#bd247ae0' : 'rgba(0,0,0,0.85)'}}
+          .ui.rating .icon { color: ${darkTheme ? '#fcfcfc2b' : 'rgba(0,0,0,0.15)'}}
+          .ui.rating .icon.selected.active { color: ${darkTheme ? '#e61a8d' : 'rgba(0,0,0,0.87)'}}
+          .ui.rating .icon.selected { color: ${darkTheme ? '#e61a8d' : 'rgba(0,0,0,0.87)'}}
         `}</style>
       </Helmet>
-      
+
       <Grid columns={2} padded>
         <Grid.Row>
           <Grid.Column width={3}>
@@ -215,7 +215,7 @@ function ShowReview(props) {
 const putStateToProps = (state) => {
   return {
     review: state.review,
-    darkTheme: state.darkTheme
+    darkTheme: state.darkTheme,
   };
 };
 

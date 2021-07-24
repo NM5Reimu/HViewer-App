@@ -9,7 +9,6 @@ import {
   changeSearchField,
 } from '../store/actions/sideMenuActions';
 
-
 const TAGS = require('./db/animeTagsList.json');
 
 function SideMenu(props) {

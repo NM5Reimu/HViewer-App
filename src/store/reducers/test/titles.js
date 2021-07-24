@@ -14,7 +14,7 @@ export default function titles(state = initState, action) {
 
     case GET_SEARCHED_TITLES_STARTED:
       console.log('started');
-      return state;
+      return action.payload;
 
     case GET_SEARCHED_TITLES_FAILURE:
       console.log('fail');
