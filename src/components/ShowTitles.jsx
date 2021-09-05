@@ -40,7 +40,7 @@ function ShowTitles(props) {
         `}</style>
       </Helmet>
 
-      <Segment inverted={darkTheme} className="header-segment">        
+      <Segment inverted={darkTheme} className="header-segment">      
         <Button.Group size="mini">
           <Button disabled>Sorting by:</Button>
           <Button
