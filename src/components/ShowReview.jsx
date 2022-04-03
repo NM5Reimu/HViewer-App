@@ -6,9 +6,9 @@ import { Helmet } from 'react-helmet';
 import { setTitleRating, setTitleFavorite } from '../store/actions/showReviewActions';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper/core';
-import 'swiper/swiper.min.css';
-import 'swiper/components/pagination/pagination.min.css';
-import 'swiper/components/navigation/navigation.min.css';
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
